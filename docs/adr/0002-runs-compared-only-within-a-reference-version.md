@@ -1,0 +1,3 @@
+# Runs are compared only within the same Reference Version
+
+The Reference is versioned with git tags (`ref-v1`, `ref-v2`, …). The app's own definition is expected to stay mostly stable. What changes is everything around it: the Reference Workflow evolves as AI tooling evolves, and production concerns such as CI get added. Every Run records its Reference Version, and results are only compared within one version. A new Reference Version starts a new series and does not invalidate earlier results. We rejected re-running old Candidates against each new version, because that is too costly. We also rejected comparing across versions, because the results would mislead.

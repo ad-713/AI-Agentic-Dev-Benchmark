@@ -1,0 +1,4 @@
+# Hidden benchmark material (ADR-0012): encrypted with git-crypt.
+hidden/** filter=git-crypt diff=git-crypt
+.gitattributes !filter !diff
+hidden/README.md !filter !diff
