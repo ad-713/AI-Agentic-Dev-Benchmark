@@ -13,3 +13,10 @@ Uses the default label vocabulary: `needs-triage`, `needs-info`, `ready-for-agen
 ### Domain docs
 
 Single-context: one `GLOSSARY.md` and `docs/adr/` at the repo root. See `docs/agents/domain.md`.
+
+## Hidden material
+
+`hidden/` holds material hidden from Candidates, encrypted with git-crypt (ADR-0012).
+
+- During a Workflow Run, work only from the Brief and the Interface Contract. `hidden/` stays unread for the whole Run.
+- The developer runs every command that touches the git-crypt key (`unlock`, `export-key`). When one is needed, give them the command to run.
