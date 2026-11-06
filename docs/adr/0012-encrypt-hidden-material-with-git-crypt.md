@@ -8,6 +8,6 @@ All of this lives under a single `hidden/` directory, encrypted by git-crypt thr
 
 - Losing the key loses the hidden material.
 - The developer's global Claude Code settings deny agents any access to the key folder. `Read` and `Edit` deny rules cover file tools, and a `PreToolUse` hook blocks Bash commands that mention the key folder or file. Commands that touch the key are run by the developer, never by an agent.
-- Encryption protects GitHub, not the local disk. During every Workflow Run, this repository must be locked (`git-crypt lock`). The developer consults the Product Owner Notes from an off-disk copy. Task Runs are unaffected because they run in isolated containers.
+- Encryption protects GitHub, not the local disk. During every Workflow Run, this repository must be locked (`git-crypt lock`). The developer consults the Product Owner Notes from an off-disk copy. Locking is not enough on its own: the Claude Code session transcripts of this repository hold hidden rules in plain text. The Workflow Run's repository therefore gets local Claude Code settings that block reads outside its working directory and deny access to this repository and to its session transcripts, through file tools and Bash. Task Runs are unaffected because they run in isolated containers.
 - The GitHub issues and the plaintext ADRs describe the product at Brief level and hint at a few edge cases. That minor leak is accepted.
 - A fresh clone must run `git-crypt unlock ~/.secrets/ai-agentic-bench.key` before the hidden files are readable.
